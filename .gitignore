@@ -1,0 +1,14 @@
+# Environment (real values, never versioned)
+.env
+
+# Compiled binaries
+/bin/
+*.exe
+
+# Test and coverage output
+*.test
+coverage.out
+
+# IDE
+.vscode/
+.idea/
