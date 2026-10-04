@@ -5,16 +5,29 @@ import (
 	"fmt"
 	"log"
 	"onchain-payment-gate-backend/internal/chain"
+	"onchain-payment-gate-backend/internal/config"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	chainClient, err := chain.NewClient("http://127.0.0.1:8545")
+	if err := godotenv.Load(); err != nil {
+		log.Printf("no .env file loaded: %v", err)
+	}
+
+	cfg, err := config.Load()
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	balance, err := chainClient.GetBalance(context.Background(), "0x5FbDB2315678afecb367f032d93F642f64180aa3")
+	client, err := chain.NewClient(cfg.RPCEndpoint)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	balance, err := client.GetBalance(context.Background(), cfg.VaultAddress)
 	if err != nil {
 		log.Fatal(err)
 		return

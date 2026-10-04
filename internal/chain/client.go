@@ -20,7 +20,6 @@ func NewClient(rpcURL string) (*Client, error) {
 	return &Client{eth: client}, nil
 }
 
-func (client *Client) GetBalance(ctx context.Context, addressStr string) (*big.Int, error) {
-	address := common.HexToAddress(addressStr)
+func (client *Client) GetBalance(ctx context.Context, address common.Address) (*big.Int, error) {
 	return client.eth.BalanceAt(ctx, address, nil)
 }
