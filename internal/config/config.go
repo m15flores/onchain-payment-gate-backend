@@ -44,7 +44,7 @@ func Load() (*Config, error) {
 
 	privateKey, err := crypto.HexToECDSA(strings.TrimPrefix(privateKeyStr, "0x"))
 	if err != nil {
-		return nil, fmt.Errorf("BACKEND_PRIVATE_KEY is not  a valid private key: %w", err)
+		return nil, fmt.Errorf("BACKEND_PRIVATE_KEY is not a valid private key: %w", err)
 	}
 
 	return &Config{

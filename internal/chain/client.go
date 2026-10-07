@@ -38,7 +38,7 @@ func (client *Client) WaitMined(ctx context.Context, tx *types.Transaction) (*ty
 func (client *Client) EnsureContract(ctx context.Context, address common.Address) error {
 	code, err := client.eth.CodeAt(ctx, address, nil)
 	if err != nil {
-		return fmt.Errorf("Error while calling RPC: %w", err)
+		return fmt.Errorf("error while calling RPC: %w", err)
 	}
 
 	if len(code) == 0 {
